@@ -1,13 +1,14 @@
 const path = require('path')
 const webpack = require('webpack')
-// const minJSON = require('jsonminify')
+const minJSON = require('jsonminify')
 
 const plugins = {
+  progress: require('webpackbar'),
   clean: require('clean-webpack-plugin'),
   extractText: require('extract-text-webpack-plugin'),
   // sync: require('browser-sync-webpack-plugin'),
   html: require('html-webpack-plugin'),
-  // copy: require('copy-webpack-plugin'),
+  copy: require('copy-webpack-plugin')
 }
 
 // const proxyDomain = 'http://fortnite.test/'
@@ -148,6 +149,11 @@ module.exports = (env = {}, argv) => {
 
     devServer: {
       contentBase: path.join(__dirname, 'src'),
+      overlay: {
+        warnings: true,
+        errors: true
+      },
+      quiet: true
     },
 
     plugins: (() => {
@@ -159,15 +165,18 @@ module.exports = (env = {}, argv) => {
           template: 'index.html',
           filename: 'index.html'
         }),
-        // new plugins.copy([
-        //   {
-        //     from: 'data/**/*.json',
-        //     // to: '',
-        //     transform: content => {
-        //       return minJSON(content.toString())
-        //     }
-        //   }
-        // ])
+        new plugins.copy([
+          {
+            from: 'data/**/*.json',
+            // to: '',
+            transform: content => {
+              return minJSON(content.toString())
+            }
+          }
+        ]),
+        new plugins.progress({
+          color: '#5C95EE'
+        })
       ]
 
       const production = [
