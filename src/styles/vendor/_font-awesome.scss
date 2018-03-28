@@ -1,0 +1,22 @@
+// Variable changes
+$fa-font-path: '~@fortawesome/fontawesome-pro-webfonts/webfonts';
+
+// Imports
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/variables';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/mixins';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/core';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/larger';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/fixed-width';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/list';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/bordered-pulled';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/animated';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/rotated-flipped';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/stacked';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/icons';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/screen-reader';
+
+// Fonts
+// @import '~@fortawesome/fontawesome-pro-webfonts/scss/fa-light';
+// @import '~@fortawesome/fontawesome-pro-webfonts/scss/fa-solid';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/fa-regular';
+@import '~@fortawesome/fontawesome-pro-webfonts/scss/fa-brands';
