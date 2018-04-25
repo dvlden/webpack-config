@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is my Webpack 4 configuration for static projects.",
   "scripts": {
-    "dev": "webpack-dev-server --open --progress --mode development",
+    "dev": "webpack-dev-server --progress --mode development",
     "watch": "webpack --watch --progress --hide-modules",
     "build": "webpack --progress --hide-modules --mode production"
   },
@@ -37,6 +37,7 @@
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11",
     "webpack-dev-server": "^3.1.1",
+    "webpack-subresource-integrity": "^1.1.0-rc.4",
     "webpackbar": "^1.5.1"
   },
   "dependencies": {

@@ -8,10 +8,11 @@ const plugins = {
   extractText: require('extract-text-webpack-plugin'),
   // sync: require('browser-sync-webpack-plugin'),
   html: require('html-webpack-plugin'),
-  copy: require('copy-webpack-plugin')
+  copy: require('copy-webpack-plugin'),
+  sri: require('webpack-subresource-integrity')
 }
 
-// const proxyDomain = 'http://fortnite.test/'
+// const proxyDomain = 'http://demo.test/'
 
 
 module.exports = (env = {}, argv) => {
@@ -149,11 +150,13 @@ module.exports = (env = {}, argv) => {
 
     devServer: {
       contentBase: path.join(__dirname, 'src'),
+      compress: true,
       overlay: {
         warnings: true,
         errors: true
       },
-      quiet: true
+      quiet: true,
+      open: true
     },
 
     plugins: (() => {
@@ -165,6 +168,13 @@ module.exports = (env = {}, argv) => {
           template: 'index.html',
           filename: 'index.html'
         }),
+        new plugins.progress({
+          color: '#5C95EE'
+        })
+      ]
+
+      const production = [
+        new plugins.clean(['dist']),
         new plugins.copy([
           {
             from: 'data/**/*.json',
@@ -174,13 +184,10 @@ module.exports = (env = {}, argv) => {
             }
           }
         ]),
-        new plugins.progress({
-          color: '#5C95EE'
+        new plugins.sri({
+          hashFuncNames: ['sha384'],
+          enabled: true
         })
-      ]
-
-      const production = [
-        new plugins.clean(['dist']),
       ]
 
       const development = [
@@ -207,12 +214,15 @@ module.exports = (env = {}, argv) => {
 
     devtool: (() => {
       return isProduction
-        ? '' // 'hidden-source-map'
+        ? '' // disable source maps for production build...
         : 'source-map'
     })(),
 
     resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules']
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      alias: {
+        '~': path.resolve(__dirname, 'src/scripts/')
+      }
     }
   }
 
