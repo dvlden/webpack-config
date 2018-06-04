@@ -35,7 +35,8 @@ module.exports = (env = {}, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
-      filename: 'scripts/[name].js'
+      filename: 'scripts/[name].js',
+      crossOriginLoading: 'anonymous'
     },
 
     module: {
@@ -97,8 +98,8 @@ module.exports = (env = {}, argv) => {
             {
               loader: 'file-loader',
               options: {
-                name: '[path][name].[ext]'
-                // outputPath: 'images/'
+                name: '[path][name].[ext]',
+                publicPath: '..' // use relative urls
               }
             },
             {
@@ -130,7 +131,8 @@ module.exports = (env = {}, argv) => {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'fonts/'
+              outputPath: 'fonts/',
+              publicPath: '../fonts/' // use relative urls
             }
           }]
         },
@@ -141,7 +143,9 @@ module.exports = (env = {}, argv) => {
             options: {
               minimize: true,
               removeComments: true,
-              collapseWhitespace: true
+              collapseWhitespace: true,
+              removeScriptTypeAttributes: true,
+              removeStyleTypeAttributes: true
             }
           },
         }
@@ -150,13 +154,11 @@ module.exports = (env = {}, argv) => {
 
     devServer: {
       contentBase: path.join(__dirname, 'src'),
-      compress: true,
       overlay: {
         warnings: true,
         errors: true
       },
-      quiet: true,
-      open: true
+      quiet: true
     },
 
     plugins: (() => {
@@ -166,7 +168,11 @@ module.exports = (env = {}, argv) => {
         }),
         new plugins.html({
           template: 'index.html',
-          filename: 'index.html'
+          filename: 'index.html',
+          minify: {
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true
+          }
         }),
         new plugins.progress({
           color: '#5C95EE'
