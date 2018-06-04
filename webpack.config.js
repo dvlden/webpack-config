@@ -34,7 +34,7 @@ module.exports = (env = {}, argv) => {
 
     output: {
       path: path.resolve(__dirname, 'dist'),
-      publicPath: '/',
+      publicPath: '',
       filename: 'scripts/[name].js',
       crossOriginLoading: 'anonymous'
     },
@@ -220,7 +220,7 @@ module.exports = (env = {}, argv) => {
 
     devtool: (() => {
       return isProduction
-        ? '' // disable source maps for production build...
+        ? '' // 'hidden-source-map'
         : 'source-map'
     })(),
 
