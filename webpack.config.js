@@ -6,14 +6,11 @@ const plugins = {
   progress: require('webpackbar'),
   clean: require('clean-webpack-plugin'),
   extractText: require('extract-text-webpack-plugin'),
-  // sync: require('browser-sync-webpack-plugin'),
+  sync: require('browser-sync-webpack-plugin'),
   html: require('html-webpack-plugin'),
   copy: require('copy-webpack-plugin'),
   sri: require('webpack-subresource-integrity')
 }
-
-// const proxyDomain = 'http://demo.test/'
-
 
 module.exports = (env = {}, argv) => {
   const isProduction = argv.mode === 'production'
@@ -154,11 +151,13 @@ module.exports = (env = {}, argv) => {
 
     devServer: {
       contentBase: path.join(__dirname, 'src'),
+      port: 8080,
       overlay: {
         warnings: true,
         errors: true
       },
-      quiet: true
+      quiet: true,
+      // open: true
     },
 
     plugins: (() => {
@@ -197,20 +196,16 @@ module.exports = (env = {}, argv) => {
       ]
 
       const development = [
-        // new plugins.sync({
-        //   proxy: proxyDomain,
-        //   files: [
-        //     {
-        //       match: ['**/*.html'],
-        //       fn: (event, file) => {
-        //         if (event === "change") {
-        //           const bs = require('browser-sync').get('bs-webpack-plugin');
-        //           bs.reload();
-        //         }
-        //       }
-        //     }
-        //   ]
-        // })
+        new plugins.sync(
+          {
+            host: 'localhost',
+            port: 9090,
+            proxy: 'http://localhost:8080/'
+          },
+          {
+            reload: false
+          }
+        )
       ]
 
       return isProduction

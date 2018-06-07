@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "This is my Webpack 4 configuration for static projects.",
   "scripts": {
-    "dev": "webpack-dev-server --progress --mode development",
-    "watch": "webpack --watch --progress --hide-modules",
+    "dev": "webpack-dev-server --progress --hide-modules --mode development",
     "build": "webpack --progress --hide-modules --mode production"
   },
   "author": {
@@ -33,9 +32,9 @@
     "jsonminify": "^0.4.1",
     "node-sass": "^4.9.0",
     "postcss-loader": "^2.1.5",
-    "sass-loader": "^7.0.2",
-    "webpack": "^4.10.2",
-    "webpack-cli": "^3.0.2",
+    "sass-loader": "^7.0.3",
+    "webpack": "^4.11.1",
+    "webpack-cli": "^3.0.3",
     "webpack-dev-server": "^3.1.4",
     "webpack-subresource-integrity": "^1.1.0-rc.4",
     "webpackbar": "^2.6.1"
