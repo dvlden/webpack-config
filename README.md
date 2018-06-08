@@ -4,14 +4,14 @@ This is my personal `webpack v4` configuration, that I am using for small static
 Feel free to contribute, improve or use it for your projects.
 
 
-#### Contains some neat stuff out of the box!
+### Contains some neat stuff out of the box!
 
 - jQuery Slim
 - Bootstrap with Popper.js
 - FontAwesome Pro _(which you cannot install, unless you have a Pro account, as you will require a Token for installation)_
 
 
-#### What does this configuration handles?
+### What does this configuration handles?
 
 
 > Common for development & production environment
@@ -40,7 +40,7 @@ Feel free to contribute, improve or use it for your projects.
 - it does not build source-maps, but you may specify it on line `218` if you want them
 
 
-##### Commands?
+### Commands?
 
 It's pretty easy... You do not have a bunch of commands, just two of them:
 
