@@ -1,25 +1,48 @@
 # Webpack 4 Configuration
 
 This is my personal `webpack v4` configuration, that I am using for small static projects.
+Feel free to contribute, improve or use it for your projects.
 
-> Here's the list of dependencies:
 
-- Bootstrap with Popper.js
+#### Contains some neat stuff out of the box!
+
 - jQuery Slim
+- Bootstrap with Popper.js
 - FontAwesome Pro _(which you cannot install, unless you have a Pro account, as you will require a Token for installation)_
 
 
-> Here's the list of what webpack configuration does:
+#### What does this configuration handles?
 
-- Takes two base entry points. One for `app` itself and the other for `vendor` _(project dependencies)_.
-- Compiles `sass/scss` with all required browser prefixes and minification. Prefixing and minification works in `production` mode only.
-- Compiles `js` files using `babel`, so you can write `es6` freely and separate your logic accross multiple files.
-- Minifies many types of image formats _(gif, png, jpeg, jpg, svg)_.
-- Handles all `fonts` that you might have in the project.
-- Has a server for `development` mode.
-- Minifies all `.json` files that you may store within `data` directory.
-- Uses `Bootstrap v4` CSS framework, but this configuration allows you to import only specific `scss` and `js` modules. Which is highly recommended, since your web app probably won't use **70%** of Bootstrap's stuff.
 
-* Has a `BrowserSync` _(which is commented out)_ which you may use if your project is `dynamic`, but I think that breaks image minification which are contained within `.html` files using `<img src="" />`. I did not test this out, but this is my assumption. 
+> Common for development & production environment
 
-_** Solution to this would be to create a single class in your css that require those images using `ulr()` (comma separated) and then images will be compiled anyways and you can use them in html without that class. Important thing is just to get those images compiled._
+- it accepts two entry points; one for the `app` and one for the `vendor`
+- it compiles everything with relative paths, rather than absolute
+- it compiles `sass/scss` to the `css` file
+- it compiles `es6` to the syntax that every browser can understand
+- it contains latest **Boostrap**, but with entirely modular setup; you may include only the parts that you need, as you probably won't use **70%** of the framework
+- it has alias as `~` for importing your `js` files, no more mess with directory back-levels
+
+
+> Development environment
+
+- it runs webpack-dev-server with browser-sync support
+- it builds source-maps
+
+
+> Production environment
+
+- it minifies `js`
+- it minifies multiple image types _(gif, png, jpg, jpeg, svg)_
+- it copies all `web fonts`
+- it minifies all `json` files from `data` directory
+- it has subresource-integrity
+- it does not build source-maps, but you may specify it on line `218` if you want them
+
+
+##### Commands?
+
+It's pretty easy... You do not have a bunch of commands, just two of them:
+
+- `npm run dev` – to start with development
+- `npm run build` - to make it ready for production use
