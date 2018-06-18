@@ -1,5 +1,6 @@
-// Core import
-@import 'common/core';
+// Bootstrap Core
+@import 'vendor/bootstrap/core';
 
-// App imports
+// App specific
+@import 'app/variables';
 @import 'app/base';

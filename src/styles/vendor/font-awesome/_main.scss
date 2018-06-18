@@ -1,7 +1,7 @@
-// Variable changes
-$fa-font-path: '~@fortawesome/fontawesome-pro-webfonts/webfonts';
+// Variable overrides
+@import 'variables';
 
-// Imports
+// Core
 @import '~@fortawesome/fontawesome-pro-webfonts/scss/variables';
 @import '~@fortawesome/fontawesome-pro-webfonts/scss/mixins';
 @import '~@fortawesome/fontawesome-pro-webfonts/scss/core';

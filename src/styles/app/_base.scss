@@ -1,4 +1,34 @@
-// Example
 body {
-    color: #696969;
+  background-color: $body-bg;
+  font-family: $body-font;
+  color: $gray-700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.image {
+  padding: $thumbnail-padding;
+  background-color: $thumbnail-bg;
+  border: $thumbnail-border-width solid $thumbnail-border-color;
+  @include border-radius($thumbnail-border-radius);
+  @include box-shadow($thumbnail-box-shadow);
+
+  img {
+    @include img-fluid;
+  }
+
+  span {
+    padding-top: $thumbnail-padding;
+    padding-right: $thumbnail-padding;
+    padding-left: $thumbnail-padding;
+    color: $gray-600;
+    display: block;
+    font: {
+      weight: 400;
+      size: 0.8rem;
+    }
+  }
 }
