@@ -1,3 +1,2 @@
-window.$ = window.jQuery = require('jquery-slim');
-
-require('~/vendor/bootstrap');
+import './vendor/jquery'
+import './vendor/bootstrap'

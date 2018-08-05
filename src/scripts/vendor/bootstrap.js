@@ -1,15 +1,14 @@
 // Core
-window.Util = require('exports-loader?Util!bootstrap/js/dist/util.js');
-window.Popper = require('popper.js').default;
-window.Tooltip = require('exports-loader?Tooltip!bootstrap/js/dist/tooltip.js');
+import Util from 'bootstrap/js/src/util'
 
 // Components
-require('exports-loader?Alert!bootstrap/js/dist/alert');
-require('exports-loader?Button!bootstrap/js/dist/button');
-require('exports-loader?Carousel!bootstrap/js/dist/carousel');
-require('exports-loader?Collapse!bootstrap/js/dist/collapse.js');
-require('exports-loader?Dropdown!bootstrap/js/dist/dropdown.js');
-require('exports-loader?Modal!bootstrap/js/dist/modal.js');
-require('exports-loader?Popover!bootstrap/js/dist/popover.js');
-require('exports-loader?ScrollSpy!bootstrap/js/dist/scrollspy.js');
-require('exports-loader?Tab!bootstrap/js/dist/tab.js');
+import Alert from 'bootstrap/js/src/alert'
+import Button from 'bootstrap/js/src/button'
+import Carousel from 'bootstrap/js/src/carousel'
+import Collapse from 'bootstrap/js/src/collapse'
+import Dropdown from 'bootstrap/js/src/dropdown'
+import Modal from 'bootstrap/js/src/modal'
+import Popover from 'bootstrap/js/src/popover'
+import Scrollspy from 'bootstrap/js/src/scrollspy'
+import Tab from 'bootstrap/js/src/tab'
+import Tooltip from 'bootstrap/js/src/tooltip'
