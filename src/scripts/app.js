@@ -1,5 +1,3 @@
-import DummyMessage from '~/app/dummy-message'
-
 $(function () {
-  new DummyMessage
+  console.log('DOM is ready. Write some jQuery or whatever...')
 })
