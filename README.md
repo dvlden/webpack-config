@@ -6,7 +6,7 @@ Feel free to contribute, improve or use it for your projects.
 
 ### Contains some neat stuff out of the box!
 
-- jQuery Slim
+- jQuery
 - Bootstrap with Popper.js
 - FontAwesome Pro _(which you cannot install, unless you have a Pro account, as you will require a Token for installation)_
 
