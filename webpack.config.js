@@ -5,7 +5,8 @@ const minJSON = require('jsonminify')
 const plugins = {
   progress: require('webpackbar'),
   clean: require('clean-webpack-plugin'),
-  extractText: require('extract-text-webpack-plugin'),
+  extractCSS: require('mini-css-extract-plugin'),
+  // extractText: require('extract-text-webpack-plugin'),
   sync: require('browser-sync-webpack-plugin'),
   html: require('html-webpack-plugin'),
   copy: require('copy-webpack-plugin'),
@@ -39,42 +40,40 @@ module.exports = (env = {}, argv) => {
     module: {
       rules: [
         {
-          test: /\.(s[ac]ss)$/,
-          use: plugins.extractText.extract({
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: ! isProduction
-                }
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: ! isProduction,
-                   plugins: (() => {
-                    return isProduction ? [
-                      require('autoprefixer')({
-                        browsers: ['last 2 versions']
-                      }),
-                      require('cssnano')({
-                        discardComments: {
-                          removeAll: true
-                        }
-                      })
-                    ] : []
-                   })()
-                }
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  outputStyle: 'expanded',
-                  sourceMap: ! isProduction
-                }
+          test: /\.((s[ac]|c)ss)$/,
+          use: [
+            plugins.extractCSS.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: ! isProduction
               }
-            ]
-          })
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                sourceMap: ! isProduction,
+                plugins: (() => {
+                  return isProduction ? [
+                    require('autoprefixer')(),
+                    require('cssnano')({
+                      preset: ['default', {
+                        minifySelectors: false
+                      }]
+                    })
+                  ] : []
+                })()
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                outputStyle: 'expanded',
+                sourceMap: ! isProduction
+              }
+            }
+          ]
         },
         {
           test: /\.js$/,
@@ -162,7 +161,7 @@ module.exports = (env = {}, argv) => {
 
     plugins: (() => {
       let common = [
-        new plugins.extractText({
+        new plugins.extractCSS({
           filename: 'styles/[name].css'
         }),
         new plugins.html({
