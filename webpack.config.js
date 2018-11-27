@@ -6,7 +6,6 @@ const plugins = {
   progress: require('webpackbar'),
   clean: require('clean-webpack-plugin'),
   extractCSS: require('mini-css-extract-plugin'),
-  // extractText: require('extract-text-webpack-plugin'),
   sync: require('browser-sync-webpack-plugin'),
   html: require('html-webpack-plugin'),
   copy: require('copy-webpack-plugin'),
@@ -54,16 +53,16 @@ module.exports = (env = {}, argv) => {
               options: {
                 ident: 'postcss',
                 sourceMap: ! isProduction,
-                plugins: (() => {
-                  return isProduction ? [
-                    require('autoprefixer')(),
+                plugins: (() => [
+                  require('autoprefixer')(),
+                  ...isProduction ? [
                     require('cssnano')({
                       preset: ['default', {
                         minifySelectors: false
                       }]
                     })
                   ] : []
-                })()
+                ])
               }
             },
             {
@@ -155,8 +154,7 @@ module.exports = (env = {}, argv) => {
         warnings: true,
         errors: true
       },
-      quiet: true,
-      // open: true
+      quiet: true
     },
 
     plugins: (() => {
@@ -223,8 +221,10 @@ module.exports = (env = {}, argv) => {
       alias: {
         '~': path.resolve(__dirname, 'src/scripts/')
       }
-    }
+    },
+
+    stats: 'errors-only'
   }
 
   return config
-};
+}
