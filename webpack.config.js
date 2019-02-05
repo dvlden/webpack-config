@@ -45,14 +45,14 @@ module.exports = (env = {}, argv) => {
             {
               loader: 'css-loader',
               options: {
-                sourceMap: ! isProduction
+                sourceMap: !isProduction
               }
             },
             {
               loader: 'postcss-loader',
               options: {
                 ident: 'postcss',
-                sourceMap: ! isProduction,
+                sourceMap: !isProduction,
                 plugins: (() => [
                   require('autoprefixer')(),
                   ...isProduction ? [
@@ -68,8 +68,9 @@ module.exports = (env = {}, argv) => {
             {
               loader: 'sass-loader',
               options: {
+                implementation: require('sass'),
                 outputStyle: 'expanded',
-                sourceMap: ! isProduction
+                sourceMap: !isProduction
               }
             }
           ]
@@ -100,7 +101,7 @@ module.exports = (env = {}, argv) => {
             {
               loader: 'image-webpack-loader',
               options: {
-                bypassOnDebug: ! isProduction,
+                bypassOnDebug: !isProduction,
                 mozjpeg: {
                   progressive: true,
                   quality: 65
