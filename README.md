@@ -37,7 +37,7 @@ Feel free to contribute, improve or use it for your projects.
 - it copies all `web fonts`
 - it minifies all `json` files from `data` directory
 - it has subresource-integrity
-- it does not build source-maps, but you may specify it on line `218` if you want them
+- it does not build source-maps, but you may specify it on line `216` if you want them
 
 
 ### Commands?
