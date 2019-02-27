@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const minJSON = require('jsonminify')
+const Fiber = require('fibers')
 
 const plugins = {
   progress: require('webpackbar'),
@@ -41,7 +42,12 @@ module.exports = (env = {}, argv) => {
         {
           test: /\.((s[ac]|c)ss)$/,
           use: [
-            plugins.extractCSS.loader,
+            {
+              loader: plugins.extractCSS.loader,
+              options: {
+                publicPath: '../' // use relative path for everything in CSS
+              }
+            },
             {
               loader: 'css-loader',
               options: {
@@ -69,6 +75,7 @@ module.exports = (env = {}, argv) => {
               loader: 'sass-loader',
               options: {
                 implementation: require('sass'),
+                fiber: Fiber,
                 outputStyle: 'expanded',
                 sourceMap: !isProduction
               }
@@ -95,7 +102,7 @@ module.exports = (env = {}, argv) => {
               loader: 'file-loader',
               options: {
                 name: '[path][name].[ext]',
-                publicPath: '..' // use relative urls
+                // publicPath: '..' // use relative path
               }
             },
             {
@@ -128,7 +135,7 @@ module.exports = (env = {}, argv) => {
             options: {
               name: '[name].[ext]',
               outputPath: 'fonts/',
-              publicPath: '../fonts/' // use relative urls
+              // publicPath: '../fonts/' // use relative path
             }
           }]
         },
@@ -181,7 +188,6 @@ module.exports = (env = {}, argv) => {
         new plugins.copy([
           {
             from: 'data/**/*.json',
-            // to: '',
             transform: content => {
               return minJSON(content.toString())
             }
