@@ -5,7 +5,10 @@ const Fiber = require('fibers')
 
 const plugins = {
   progress: require('webpackbar'),
-  clean: require('clean-webpack-plugin'),
+  clean: (() => {
+    const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+    return CleanWebpackPlugin
+  })(),
   extractCSS: require('mini-css-extract-plugin'),
   sync: require('browser-sync-webpack-plugin'),
   html: require('html-webpack-plugin'),
@@ -184,7 +187,7 @@ module.exports = (env = {}, argv) => {
       ]
 
       const production = [
-        new plugins.clean(['dist']),
+        new plugins.clean(),
         new plugins.copy([
           {
             from: 'data/**/*.json',
