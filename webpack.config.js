@@ -1,7 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const minJSON = require('jsonminify')
-const Fiber = require('fibers')
 
 const plugins = {
   progress: require('webpackbar'),
@@ -78,9 +77,11 @@ module.exports = (env = {}, argv) => {
               loader: 'sass-loader',
               options: {
                 implementation: require('sass'),
-                fiber: Fiber,
-                outputStyle: 'expanded',
-                sourceMap: !isProduction
+                sassOptions: {
+                  fiber: require('fibers'),
+                  outputStyle: 'expanded',
+                  sourceMap: !isProduction
+                }
               }
             }
           ]
@@ -111,7 +112,7 @@ module.exports = (env = {}, argv) => {
             {
               loader: 'image-webpack-loader',
               options: {
-                bypassOnDebug: !isProduction,
+                disable: !isProduction,
                 mozjpeg: {
                   progressive: true,
                   quality: 65
@@ -120,11 +121,14 @@ module.exports = (env = {}, argv) => {
                   enabled: false
                 },
                 pngquant: {
-                  quality: '65-90',
+                  quality: [0.65, 0.90],
                   speed: 4
                 },
                 gifsicle: {
                   interlaced: false
+                },
+                webp: {
+                  quality: 75
                 }
               }
             }
