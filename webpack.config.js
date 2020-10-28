@@ -1,5 +1,6 @@
 const path = require('path')
 const minJSON = require('jsonminify')
+const webpack = require('webpack')
 
 const plugins = {
   progress: require('webpackbar'),
@@ -179,7 +180,12 @@ module.exports = (env = {}, argv) => {
         }),
         new plugins.progress({
           color: '#5C95EE'
-        })
+        }),
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify(
+            isProduction ? 'production' : 'development'
+          )
+        });
       ]
 
       const production = [
