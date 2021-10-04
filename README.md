@@ -8,7 +8,7 @@ Feel free to contribute, improve or use it for your projects.
 
 - jQuery
 - Bootstrap with Popper.js
-- FontAwesome Pro _(which you cannot install, unless you have a Pro account, as you will require a Token for installation)_
+- FontAwesome
 
 
 ### What does this configuration handles?
